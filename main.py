@@ -8,8 +8,15 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
+
+def dwn_image(result):
+    image = result.entities.get('media', [])
+    if(len(image) > 0):
+        # wget.download(image)
+        urllib.request.urlretrieve(image, '/home/vamato9/Documents/School/Python/Python_Project/Images')
 # stream = MyStreamListener()
 # myStream = tweepy.Stream(auth = api.auth, listener=stream)
+
 
 while True:
     since_id = 988883933889728511  # change to read from a config file
@@ -32,11 +39,7 @@ while True:
 
         # Call image processor
 
-        def dwn_image(result):
-            image = result.entities.get('media', [])
-            if(len(image) > 0):
-                # wget.download(image)
-                urllib.request.urlretrieve(image, '/home/vamato9/Documents/School/Python/Python_Project/Images')
+        dwn_image(line)
 
         # Reply
     time.sleep(12)
