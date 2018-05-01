@@ -10,6 +10,8 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
+# Dictionary
+breeds = {'norwegianelkhound': 'Norwegian Elkhound'}
 
 while True:
     with open('since_id.txt') as i:
@@ -47,8 +49,11 @@ while True:
                     line = line.split(" ")
                     name = line[1:-1]
                     percent = line[-1]
+                    percent = "{:.2%}".format(percent)
                     name = ''.join(name)
+                    if name in breeds:
+                        name = breeds[name]
                     author = "@" + author
-                    api.update_status(author + " it might be " + name, since_id)
+                    api.update_status(author + " I am " + percent + " percent sure that this is a " + name + "!", since_id)
 
     time.sleep(12)
