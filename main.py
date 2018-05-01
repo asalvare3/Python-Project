@@ -35,7 +35,7 @@ while True:
                 urllib.request.urlretrieve(image['media_url'], '/home/cody/pythonproject/TwT/image.jpg')
         
             # Call image processor
-            call(["python", "/home/cody/pythonproject/example_code/label_image.py", "--graph=/tmp/output_graph.pb", "--labels=/tmp/output_labels.txt", "--input_layer=Placeholder", "--output_layer=final_result", "--image=/home/cody/pythonproject/TwT/image.jpg"])
+            call(["python", "/home/cody/pythonproject/example_code/label_image.py", "--graph=/tmp/output_graph.pb", "--labels=/tmp/output_labels.txt", "--input_layer=Placeholder", "--output_layer=final_result", "--image=/home/cody/pythonproject/TwT/image.jpg", ">pythonprojectresult.txt"])
                   
             # Reply
 
