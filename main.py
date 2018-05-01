@@ -1,6 +1,7 @@
 import tweepy
 import time
 import urllib.request
+from subprocess import call
 from credentials import *
 
 
@@ -31,8 +32,11 @@ while True:
         # Grab image URL and download
         if 'media' in tweet.entities:
             for image in tweet.entities['media']:
-                urllib.request.urlretrieve(image['media_url'], '/Users/ChristopherWFrost/Developer/Git/Python-Project/temp.jpg')
+                urllib.request.urlretrieve(image['media_url'], '/home/cody/pythonproject/TwT/image.jpg')
+        
+            # Call image processor
+            call(["python", "label_image.py", "--graph=/tmp/output_graph.pb", "--labels=/tmp/output_labels.txt", "--input_layer=Placeholder", "--output_layer=final_result", "--image=/home/cody/pythonproject/TwT/image.jpg"])
+                  
+            # Reply
 
-        # Call image processor
-        # Reply
     time.sleep(12)
